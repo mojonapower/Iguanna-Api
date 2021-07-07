@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, Teacher
+from models import db, Teacher, Materia
 #from models import Person
 
 app = Flask(__name__)
@@ -35,6 +35,17 @@ def handle_hello():
     
     response_body = {
         "msg": "Hello, this is your GET /user response "
+    }
+
+    return jsonify(response_body), 200
+############### ver materias #####################
+@app.route('/materia', methods=['GET'])
+def get_materia():
+    all_materia = Materia.query.all()
+    all_materia = list(map(lambda x: x.serialize(), all_materia))
+    
+    response_body = {
+        "msg": all_materia
     }
 
     return jsonify(response_body), 200

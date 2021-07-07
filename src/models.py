@@ -57,6 +57,6 @@ class Materia(db.Model):
             "id": self.id,
             "title": self.title,
             "unidad": self.unidad,
-            "document": self.description
+            "document": self.document
             # do not serialize the password, its a security breach
         }
